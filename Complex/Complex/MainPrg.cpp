@@ -1,7 +1,5 @@
 #include"Complex.h"
 
-
-
 istream& operator>>(istream& in, Complex& c) {
     cout << "Please input real part: ";
     in >> c.real;

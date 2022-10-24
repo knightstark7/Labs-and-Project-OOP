@@ -13,24 +13,37 @@ istream& operator >> (istream& in, Phanso& ps) {
 	return in;
 }
 
-ostream& operator << (ostream& os, Phanso& ps) {
-	os << ps.tuso << "/" << ps.mauso << endl;;
+ostream& operator << (ostream& os, const Phanso& ps) {
+	os << ps.tuso << "/" << ps.mauso;
     return os;
 }
 
 int main() {
 	Phanso a, b, c;
-	cin >> a >> b;
-	cout << a << b;
+	cout << "Hay nhap phan so dau tien\n";
+	cin >> a;
+	cout << "\nHay nhap phan so thu hai\n";
+	cin >> b;
+	cout << "\nBan vua nhap 2 phan so la: " << a << " va " << b << "\n";
+	cout << "Cac phep tinh duoc thuc hien voi cac phan so ban vua nhap: \n";
+
 	c = a.add(b);
-	//cout << c;
-	//c = a.sub(b);
-	//cout << c;
-	//c = a.mul(b);
-	//cout << c;
-	//c = a.div(b);
-	c.inversion();
-	cout << c;
+	c.reduction();
+	cout << a << " + " << b << " = " << c << "\n";
+
+	c = a.sub(b);
+	c.reduction();
+	cout << a << " - " << b << " = " <<	c << "\n";
+
+	c = a.mul(b);
+	c.reduction();
+	cout << a << " * " << b << " = " << c << "\n"; 
+
+	c = a.div(b);
+	c.reduction();
+	cout << a << " / " << b << " = " << c << "\n";
+
+	cout << "\n";
 	system("pause");
 	return 0;
 }
