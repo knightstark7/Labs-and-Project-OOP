@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{71040819-6874-4617-a26e-16fe5f8f3021}</ProjectGuid>
+    <ProjectGuid>{f785c7e3-1c41-45fa-87d9-e31755659ed5}</ProjectGuid>
     <RootNamespace>Monomial</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -139,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\FigIO.cpp" />
-    <ClCompile Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\Main.cpp" />
-    <ClCompile Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\Monomial.cpp" />
+    <ClCompile Include="FigIO.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Monomial.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\FigIO.h" />
-    <ClInclude Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\Monomial.h" />
+    <ClInclude Include="FigIO.h" />
+    <ClInclude Include="Monomial.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

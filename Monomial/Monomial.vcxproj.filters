@@ -15,22 +15,22 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\FigIO.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\Main.cpp">
+    <ClCompile Include="Monomial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\Monomial.cpp">
+    <ClCompile Include="FigIO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\FigIO.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="FigIO.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="E:\bo\Downloads\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1\Monomial.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Monomial.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
