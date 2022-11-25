@@ -1,4 +1,9 @@
-﻿  SATest.cpp
+﻿  InsertionS.cpp
+  InterchangeS.cpp
+  main.cpp
+  ProgramFrame.cpp
+  SATest.cpp
+  SelectionS.cpp
   SortArray.cpp
   Generating Code...
-  SortArray.vcxproj -> D:\Desktop\21127050-21127392-21127671-21127708\x64\Debug\SortArray.exe
+  SortArray.vcxproj -> C:\Users\O8360\Documents\GitHub\labs_OOP\21127050-21127392-21127671-21127708\x64\Debug\SortArray.exe
