@@ -141,10 +141,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cBird.cpp" />
+    <ClCompile Include="cWorm.cpp" />
     <ClCompile Include="cCar.cpp" />
     <ClCompile Include="Console.cpp" />
-    <ClCompile Include="cDinosaur.cpp" />
+    <ClCompile Include="cFrog.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="cLevel.cpp" />
@@ -153,14 +153,14 @@
     <ClCompile Include="People.cpp" />
     <ClCompile Include="cPosition.cpp" />
     <ClCompile Include="cRows.cpp" />
-    <ClCompile Include="cTruck.cpp" />
+    <ClCompile Include="cHelicopter.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cBird.h" />
+    <ClInclude Include="cWorm.h" />
     <ClInclude Include="cCar.h" />
     <ClInclude Include="Console.h" />
-    <ClInclude Include="cDinosaur.h" />
+    <ClInclude Include="cFrog.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="cLevel.h" />
@@ -169,7 +169,7 @@
     <ClInclude Include="People.h" />
     <ClInclude Include="cPosition.h" />
     <ClInclude Include="cRows.h" />
-    <ClInclude Include="cTruck.h" />
+    <ClInclude Include="cHelicopter.h" />
     <ClInclude Include="head.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

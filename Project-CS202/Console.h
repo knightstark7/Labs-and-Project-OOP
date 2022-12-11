@@ -5,6 +5,7 @@ static bool isMute = false;
 
 constexpr int ColorCode_DarkWhite	= 7;
 constexpr int ColorCode_Cyan		= 11;
+constexpr int ColorCode_Red			= 12;
 constexpr int ColorCode_Yellow		= 14;
 constexpr int ColorCode_White		= 15;
 

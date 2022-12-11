@@ -2,7 +2,7 @@
 
 void Game::gameSettings() {
 	system("cls");
-	const char *setting[3] = { "Mode", "Sound", "Menu" };
+	const char *setting[3] = { "Mode", "Sound", "Back" };
 	char *currentSettting[3] = { "EASY", "ON", "" };
 	if (constantVar::isHard) {
 		currentSettting[0] = "HARD";
@@ -28,14 +28,17 @@ void Game::gameSettings() {
 			TextColor(7);
 			drawTitle();
 			for (int i = 0; i < 3; i++) {
-				gotoXY(x, y + i);
 				if (i == pos1) {
+					gotoXY(x, y + i);
 					TextColor(227);
-				}
-				else {
+					cout << setting[i] << " " << currentSettting[i];
 					TextColor(7);
 				}
-				cout << setting[i] << " " << currentSettting[i];
+				else {
+					gotoXY(x, y + i);
+					cout << setting[i] << " " << currentSettting[i];
+					TextColor(7);
+				}
 			}
 			TextColor(7);
 			currentKey = false;
@@ -106,11 +109,9 @@ void Game::gameSettings() {
 	return;
 }
 
-void Game::menu(bool &isFinish) {
-}
 
 void Game::menu() {
-	const string choice[4] = { "New Game","Load Game","Settings","Quit" };
+	const string choice[4] = { "NEW GAME", "LOAD GAME", "OPTIONS", "EXIT"};
 	int pos = 0;
 	int x = 35, y = 20;
 	if (!constantVar::isMute)PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
@@ -122,18 +123,20 @@ void Game::menu() {
 		while (true) {
 			if (changeInput) {
 				for (int i = 0; i < 4; i++) {
-					gotoXY(x, y + i);
-					if (i == pos){
+					if (i == pos) {
+						gotoXY(x, y + i);
 						TextColor(227);
-					}
-					else
-					{
+						cout << choice[i];
 						TextColor(7);
 					}
-					cout << choice[i] << endl;
+					else {
+						gotoXY(x, y + i);
+						cout << choice[i];
+						TextColor(7);
+					}
 				}
-				TextColor(7);
-			
+				int color = rand() % 7;
+				TextColor(color);
 				gotoXY(20, 11); cout << "  ______ .______        ______       _______.   _______. __ .__   __.  _______ " << endl;
 				gotoXY(20, 12); cout << " /      ||   _  \\      /  __  \\     /      |   /       ||  ||  \\ |  | /  _____|" << endl;
 				gotoXY(20, 13); cout << "|  ,----'|  |_)  |    |  |  |  |   |   (----` |   (----`|  ||   \\|  ||  |  __  " << endl;
@@ -234,28 +237,30 @@ bool Game::continueMenu() {
 	map.printMap();
 	map.deleteOldPlayer();
 	map.bombEffect();
-	gotoXY(15, 5); cout << "******    *******        ****      *******    **    **    ******     *******      ###   ###" << endl;
-	gotoXY(15, 6); cout << "**        **     **     **  **   **           **    **    **         **     *     ###   ###" << endl;
-	gotoXY(15, 7); cout << "**        ** *  **     **    **    ****       ********    ******     **      *    ###   ###" << endl;
-	gotoXY(15, 8); cout << "**        **   **     **      **         **   **    **    **         **     *     ###   ###" << endl;
-	gotoXY(15, 9); cout << "******    **    **   **        **  *****      **    **    ******     *******     ::::: ::::: " << endl;
-	gotoXY(35, 23); cout << "Continue ?" << endl;
-	const char *choice[2] = { "<YES>", "<NO>" };
+	
+	gotoXY(20, 4); cout << "  ______ .______           ___          _______. __    __  _______  _______  " << endl;
+	gotoXY(20, 5); cout << " /      ||   _  \\         /   \\        /       ||  |  |  ||   ____||       \\ " << endl;
+	gotoXY(20, 6); cout << "|  ,----'|  |_)  |       /  ^  \\      |   (----`|  |__|  ||  |__   |  .--.  |" << endl;
+	gotoXY(20, 7); cout << "|  |     |      /       /  /_\\  \\      \\   \\    |   __   ||   __|  |  |  |  |" << endl;
+	gotoXY(20, 8); cout << "|  `----.|  |\\  \\----. /  _____  \\ .----)   |   |  |  |  ||  |____ |  '--'  |" << endl;
+	gotoXY(20, 9); cout << " \\______|| _| `._____|/__/     \\__\\|_______/    |__|  |__||_______||_______/ " << endl;
+	gotoXY(35, 23); cout << "Do you want continue ?" << endl;
+	const char *choice[2] = { "[>YES<]", "[>NO<]" };
 	int pos = 0, x = 36, y = 25;
 	TextColor(7);
 
 	while (1) {
-		TextColor(7);
 		for (int i = 0; i < 2; i++) {
 			if (i == pos) {
-				TextColor(227);
 				gotoXY(x, y + i);
+				TextColor(227);
 				cout << choice[i];
 				TextColor(7);
 			}
 			else {
 				gotoXY(x, y + i);
 				cout << choice[i];
+				TextColor(7);
 			}
 		}
 
@@ -273,7 +278,7 @@ bool Game::continueMenu() {
 			return !pos;
 		}
 	}
-
+	TextColor(7);
 }
 
 
@@ -289,7 +294,7 @@ bool Game::newGame() { // start a new game, initialize Map map
 	if(!isLoaded) map.initializeNewState();
 	isLoaded = false;
 
-	const string choice[3] = { "Save Game","Load Game","Quit" };
+	const string choice[3] = { "SAVE GAME","LOAD GAME","EXIT" };
 	int pos = 0;
 	while (!map.isEnd()) {
 		if (!isPausing) {
@@ -298,18 +303,21 @@ bool Game::newGame() { // start a new game, initialize Map map
 
 		int x = 125, y = 22;
 		if (isPausing) {
-			TextColor(7);
+			TextColor(11);
 			gotoXY(125, 19); cout << "PAUSE MENU" << endl;
+			TextColor(7);
 			for (int i = 0; i < 3; i++) {
-				gotoXY(x, y + i);
 				if (i == pos) {
-					TextColor(227);
-				}
-				else
-				{
+					gotoXY(x, y + i);
+					TextColor(12);
+					cout << choice[i];
 					TextColor(7);
 				}
-				cout << choice[i] << endl;
+				else {
+					gotoXY(x, y + i);
+					cout << choice[i];
+					TextColor(7);
+				}
 			}
 			TextColor(7);
 		}
@@ -335,8 +343,8 @@ bool Game::newGame() { // start a new game, initialize Map map
 			if (key == 'p')
 			{
 				togglePauseGame();
-				pos = 0; // reset pause menu selection
-				if (!isPausing) { // map.redrawMap();
+				pos = 0;
+				if (!isPausing) {
 					gotoXY(125, 19); cout << "                  " << endl;
 					for (int i = 0; i < 3; i++) {
 						gotoXY(x, y + i);
@@ -409,30 +417,33 @@ bool Game::newGame() { // start a new game, initialize Map map
 
 bool Game::continueGame()
 {
+	clrscr();
 	char key;
 	isPausing = false;
 	map.printMap();
 	map.initializeNewState();
-	const string choice[3] = { "Save Game","Load Game","Quit" };
+	const string choice[3] = { "SAVE GAME", "LOAD GAME", "EXIT"};
 	int pos = 0;
 	while (!map.isEnd()) {
 		if (!isPausing) {
 			map.randomNextState();
 		}
-
-		TextColor(7);
+		TextColor(11);
 		gotoXY(125, 19); cout << "PAUSE MENU" << endl;
+		TextColor(7);
 		int x = 125, y = 22;
 		for (int i = 0; i < 3; i++) {
-			gotoXY(x, y + i);
 			if (i == pos) {
-				TextColor(227);
-			}
-			else
-			{
+				gotoXY(x, y + i);
+				TextColor(12);
+				cout << choice[i];
 				TextColor(7);
 			}
-			cout << choice[i] << endl;
+			else {
+				gotoXY(x, y + i);
+				cout << choice[i];
+				TextColor(7);
+			}
 		}
 		TextColor(7);
 
@@ -442,8 +453,6 @@ bool Game::continueGame()
 			key = getch();
 			if (key == 'o')
 			{
-				//Save
-				// call saveGame of Game to get name of file
 				togglePauseGame();
 				saveGameMenu();
 				togglePauseGame();
@@ -497,6 +506,7 @@ bool Game::continueGame()
 					return true;
 				}
 			}
+			clrscr();
 			TextColor(7);
 			map.drawPlayer();
 			map.drawMap();
@@ -517,26 +527,6 @@ bool Game::continueGame()
 	return false;
 }
 
-
-//void Game::loading()
-//{
-//	//if(!constantVar::isMute)PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
-//	if (!constantVar::isMute)PlaySound(TEXT("RaceStart.wav"), NULL, SND_ASYNC);
-//	map.printMap();
-//	map.deleteOldPlayer();
-//	drawTitle();
-//	gotoXY(30, 25);
-//	cout << "[";
-//	for (int i = 0; i <= 50; i++)
-//	{
-//		Sleep(35);
-//		gotoXY(30 + i, 25);
-//		cout << "=>";
-//		gotoXY(30 + 25, 26);
-//		cout << i * 2 << "%";
-//	}
-//
-//}
 
 vector<string> Game::getAllFilename(const string& name)
 {
@@ -578,13 +568,12 @@ bool Game::loadGameMenu() { // get file of Map map
 	clrscr();
 	map.printBorder();
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
-	gotoXY(15, 5); cout << "**      *******      ****     *******" << endl;
-	gotoXY(15, 6); cout << "**     **     **    **  **    **     *" << endl;
-	gotoXY(15, 7); cout << "**     **     **   ********   **      * **     ** ******** **    ** **    **" << endl;
-	gotoXY(15, 8); cout << "****** **     **  **********  **     *  ** * * ** **       ** *  ** **    **" << endl;
-	gotoXY(15, 9); cout << "******  *******  **        ** *******   **  *  ** *******  **  * ** **    **" << endl;
-	gotoXY(15, 10); cout << "                                        **     ** **       **   *** **    **" << endl;
-	gotoXY(15, 11); cout << "                                        **     ** ******** **    ** ********" << endl;
+	gotoXY(20, 4); cout << " __        ______       ___      _______       .___  ___. _______ .__   __. __    __    " << endl;
+	gotoXY(20, 5); cout << "|  |      /  __  \\     /   \\    |       \\      |   \\/   ||   ____||  \\ |  ||  |  |  |" << endl;
+	gotoXY(20, 6); cout << "|  |     |  |  |  |   /  ^  \\   |  .--.  |     |  \\  /  ||  |__   |   \\|  ||  |  |  |" << endl;
+	gotoXY(20, 7); cout << "|  |     |  |  |  |  /  /_\\  \\  |  |  |  |     |  |\\/|  ||   __|  |  . `  ||  |  |  |" << endl;
+	gotoXY(20, 8); cout << "|  `----.|  `--'  | /  _____  \\ |  '--'  |     |  |  |  ||  |____ |  |\\   ||  `--'  |" << endl;
+	gotoXY(20, 9); cout << "|_______| \\______/ /__/     \\__\\|_______/      |__|  |__||_______||__| \\__| \\______/ " << endl;
 	TextColor(7);
 	gotoXY(30, 13); cout << "<Press ESC to escape...>";
 	TextColor(7);
@@ -632,7 +621,6 @@ bool Game::loadGameMenu() { // get file of Map map
 			if (key == 27)
 			{
 				clrscr();
-				//map.redrawMap();
 				return false;
 			}
 		}
@@ -644,22 +632,22 @@ void Game::saveGameMenu() { // get file of Map ma
 	string filename;
 	clrscr();
 	map.printBorder();
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-	gotoXY(15, 5); cout << "*******        **** **    ** ******* " << endl;
-	gotoXY(15, 6); cout << " **          **  **  **   ** ** " << endl;
-	gotoXY(15, 7); cout << "   **      ********   **  ** *******    **     ** ******** **    ** **    **  " << endl;
-	gotoXY(15, 8); cout << "     **   **     **    ** ** **         ** * * ** **       ** *  ** **    ** " << endl;
-	gotoXY(15, 9); cout << "******   *       **     **** *******    **  *  ** *******  **  * ** **    **  " << endl;
-	gotoXY(15, 10); cout << "                                        **     ** **       **   *** **    **   " << endl;
-	gotoXY(15, 11); cout << "                                        **     ** ******** **    ** ********  " << endl;
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	TextColor(10);
+	gotoXY(15, 4); cout << "     _______.     ___     ____    ____ _______      .___  ___. _______ .__   __. __    __    " << endl;
+	gotoXY(15, 5); cout << "    /       |    /   \\    \\   \\  /   /|   ____|     |   \\/   ||   ____||  \\ |  ||  |  |  |" << endl;
+	gotoXY(15, 6); cout << "   |   (----`   /  ^  \\    \\   \\/   / |  |__        |  \\  /  ||  |__   |   \\|  ||  |  |  |" << endl;
+	gotoXY(15, 7); cout << "    \\   \\      /  /_\\  \\    \\      /  |   __|       |  |\\/|  ||   __|  |  . `  ||  |  |  |" << endl;
+	gotoXY(15, 8); cout << ".----)   |    /  _____  \\    \\    /   |  |____      |  |  |  ||  |____ |  |\\   ||  `--'  |" << endl;
+	gotoXY(15, 9); cout << "|_______/    /__/     \\__\\    \\__/    |_______|     |__|  |__||_______||__| \\__| \\______/ " << endl;
+	
 	gotoXY(15, 20);
+	TextColor(7);
 	cout << "<Press ESC to escape>";
 	map.deleteOldPlayer();
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	TextColor(7);
 	gotoXY(15, 15);
 	cout << "Input file name to save: ";
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	TextColor(7);
 	char key;
 	while ((key = getch()) != 27 ) {
 		switch (key) {
@@ -684,9 +672,6 @@ void Game::saveGameMenu() { // get file of Map ma
 	}
 	clrscr();
 	map.redrawMap();
-	//isPausing = false;
-	//file = file + ".txt";
-	//map.saveGame(filename);
 }
 
 void Game::pauseMenu(int cmd){

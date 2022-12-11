@@ -2,10 +2,10 @@
 #include "head.h"
 #include "cPosition.h"
 #include "Enemy.h"
-#include "cBird.h"
+#include "cWorm.h"
 #include "cCar.h"
-#include "cDinosaur.h"
-#include "cTruck.h"
+#include "cFrog.h"
+#include "cHelicopter.h"
 
 class cLevel{
 private:

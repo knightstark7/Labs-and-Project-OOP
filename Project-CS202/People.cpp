@@ -6,72 +6,46 @@ People::People() : isDead(false) {
 	a = new char*[3];
 	emptyPlayer = new char*[3];
 	for (int i = 0; i < 3; ++i) {
-		emptyPlayer[i] = new char[5];
-		for (int j = 0; j < 5; ++j) {
+		emptyPlayer[i] = new char[3];
+		for (int j = 0; j < 3; ++j) {
 			emptyPlayer[i][j] = ' ';
 		}
 	}
 	for (int i = 0; i < 3; i++)
 	{
-		a[i] = new char[5];
+		a[i] = new char[3];
 	}
-	//Row1
-	for (int i = 0; i < 5; i++) {
-		if (i == 2)
-			a[0][i] = 'O';
-		else
-			a[0][i] = ' ';
-	}
-	//Row2
-	for (int i = 0; i < 5; i++) {
-		if (i == 0)	a[1][i] = '/';
-		if (i == 1)	a[1][i] = '(';
-		if (i == 2)	a[1][i] = '_';
-		if (i == 3)	a[1][i] = ')';
-		if (i == 4)	a[1][i] = '\\';
-	}
-	//Row3
-	for (int i = 0; i < 5; i++) {
-		if (i == 1)	a[2][i] = '/';
-		else if (i == 3)	a[2][i] = '\\';
-		else a[2][i] = ' ';
+	char b[3][4] = { " O ",
+				     "/|\\",
+				     "/ \\" };
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			a[i][j] = b[i][j];
+		}
 	}
 }
 
 People::People(cPosition pos) : isDead(false), pos(pos) {
 	//pos.setPos(pos.getX(), pos.getY());
-	a = new char*[3];
-	emptyPlayer = new char*[3];
+	a = new char* [3];
+	emptyPlayer = new char* [3];
 	for (int i = 0; i < 3; ++i) {
-		emptyPlayer[i] = new char[5];
-		for (int j = 0; j < 5; ++j) {
+		emptyPlayer[i] = new char[3];
+		for (int j = 0; j < 3; ++j) {
 			emptyPlayer[i][j] = ' ';
 		}
 	}
 	for (int i = 0; i < 3; i++)
 	{
-		a[i] = new char[5];
+		a[i] = new char[3];
 	}
-	//Row1
-	for (int i = 0; i < 5; i++) {
-		if (i == 2)
-			a[0][i] = 'O';
-		else
-			a[0][i] = ' ';
-	}
-	//Row2
-	for (int i = 0; i < 5; i++) {
-		if (i == 0)	a[1][i] = '/';
-		if (i == 1)	a[1][i] = '(';
-		if (i == 2)	a[1][i] = '_';
-		if (i == 3)	a[1][i] = ')';
-		if (i == 4)	a[1][i] = '\\';
-	}
-	//Row3
-	for (int i = 0; i < 5; i++) {
-		if (i == 1)	a[2][i] = '/';
-		else if (i == 3)	a[2][i] = '\\';
-		else a[2][i] = ' ';
+	char b[3][4] = { " O ",
+					 "/|\\",
+					 "/ \\" };
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			a[i][j] = b[i][j];
+		}
 	}
 
 }
@@ -93,9 +67,7 @@ void People::killPlayer() {
 }
 
 char ** People::shape() {
-
 	return a;
-
 }
 
 char **People::emptyShape() {
@@ -155,10 +127,10 @@ bool People::checkIsDead() {
 }
 
 bool People::crash(cPosition pos, int w, int h) {
-	int magicConst = 3;
-	if (w == 5) {
+	int magicConst = 1;
+	if (w == 3) {
 		//crash while Car/Truck on the right
-		magicConst = 3;
+		magicConst = 1;
 		if (this->getX() == pos.getX()) {
 			if (this->getY() <= pos.getY() && max(getY(), pos.getY()) <= min(getY() + getlength() - magicConst, pos.getY() + w - magicConst))
 			{
@@ -168,7 +140,7 @@ bool People::crash(cPosition pos, int w, int h) {
 				return true;
 		}
 	}
-	if (w == 3) {
+	if (w == 1) {
 		magicConst = 1;
 		if (this->getX() == pos.getX())
 		{

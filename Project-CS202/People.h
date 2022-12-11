@@ -3,10 +3,10 @@
 #include "Console.h"
 #include "cPosition.h"
 #include "Enemy.h"
-#include "cBird.h"
+#include "cWorm.h"
 #include "cCar.h"
-#include "cDinosaur.h"
-#include "cTruck.h"
+#include "cFrog.h"
+#include "cHelicopter.h"
 
 class People{
 private:
@@ -14,7 +14,7 @@ private:
 	bool isDead;
 	char **a;  //a[3][5]
 	char **emptyPlayer;
-	int length = 5, width = 3;
+	int length = 3, width = 3;
 public:
 	People(); // set default position
 	cPosition getPos();

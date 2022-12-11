@@ -5,9 +5,7 @@ Enemy::Enemy() : outMap(false) {}
 Enemy::Enemy(cPosition pos) : point(pos), outMap(false) {}
 
 cPosition Enemy::getPos() {
-
 	return point;
-
 }
 
 int Enemy::getX() {

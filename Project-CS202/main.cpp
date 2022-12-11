@@ -1,17 +1,17 @@
 ﻿#include "head.h"
 #include "Map.h"
 #include "Game.h"
-#include "cTruck.h"
+#include "cHelicopter.h"
 #include "cCar.h"
-#include "cBird.h"
+#include "cWorm.h"
+#include "cFrog.h"
 
-bool constantVar::isMute = false;
-bool constantVar::isHard = true;
+bool constantVar::isMute = true;
+bool constantVar::isHard = false;
 
 
 int main() {
 	srand(time(NULL));
-	//DisableMouse();
 	HWND console = GetConsoleWindow();
 	RECT r;
 	GetWindowRect(console, &r); //stores the console's current dimensions

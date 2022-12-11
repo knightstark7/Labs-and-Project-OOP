@@ -3,14 +3,13 @@
 #include "Enemy.h"
 
 class cCar : public Enemy{
-	char **a; //a[3][8]
+	char **a; //a[3][15]
 public:
 	cCar(cPosition pos);
 	char ** shape();
 	void sound();
-	void test();
 	int getlength(){
-		return 8;
+		return 11;
 	}
 	int getType();
 	cCar();

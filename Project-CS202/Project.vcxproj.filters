@@ -24,16 +24,16 @@
     <ClCompile Include="Map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cTruck.cpp">
+    <ClCompile Include="cHelicopter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cCar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cBird.cpp">
+    <ClCompile Include="cWorm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cDinosaur.cpp">
+    <ClCompile Include="cFrog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
@@ -83,16 +83,16 @@
     <ClInclude Include="Console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cTruck.h">
+    <ClInclude Include="cHelicopter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cCar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cBird.h">
+    <ClInclude Include="cWorm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cDinosaur.h">
+    <ClInclude Include="cFrog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="head.h">

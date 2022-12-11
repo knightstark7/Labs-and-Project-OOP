@@ -44,14 +44,14 @@ void Map::printMap()
 	cout << "!~ CROSS THE ROAD GAME ~!";
 	gotoXY(125, 3); cout << "Level: " << level.getLevel() << endl;
 	gotoXY(125, 5); cout << "Control Manual" << endl;
-	gotoXY(125, 6); cout << "[ W ]: Up" << endl;
-	gotoXY(125, 7); cout << "[ A ]: Left" << endl;
-	gotoXY(125, 8); cout << "[ S ]: Down" << endl;
-	gotoXY(125, 9); cout << "[ D ]: Right" << endl;
+	gotoXY(125, 6); cout << "(_W_): Up" << endl;
+	gotoXY(125, 7); cout << "(_A_): Left" << endl;
+	gotoXY(125, 8); cout << "(_S_): Down" << endl;
+	gotoXY(125, 9); cout << "(_D_): Right" << endl;
 	gotoXY(125, 11); cout << "Config game" << endl;
-	gotoXY(125, 12); cout << "[ O ]: Save game" << endl;
-	gotoXY(125, 13); cout << "[ L ]: Load game" << endl;
-	gotoXY(125, 14); cout << "[ P ]: Pause game/Menu" << endl;
+	gotoXY(125, 12); cout << "(_O_): Save game" << endl;
+	gotoXY(125, 13); cout << "(_L_): Load game" << endl;
+	gotoXY(125, 14); cout << "(_P_): Pause menu/ Resume" << endl;
 	drawPlayer(); // at the starting game
 }
 
@@ -119,7 +119,7 @@ void Map::initializeNewState() {
 	rowsData.~cRows();
 	new(&rowsData) cRows();
 	int padding[10]{};
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < level.getLevel() + 3; ++i) {
 		padding[i] = 0;
 		int speed = rand() % (level.getMinSpeed() - level.getMaxSpeed() + 1) + level.getMaxSpeed();
 		bool direction = rand() % 2;
@@ -301,7 +301,6 @@ bool Map::loadGame(string file) {
 			eY = readInt(infile);
 			eType = readInt(infile);
 			rowsData.pushEnemy(i, level.getNewEnemy(cPosition(eX, eY), eType));
-			//Print enemy ?
 		}
 	}
 	infile.close();
@@ -320,32 +319,24 @@ void Map::printCongrats()
 	gotoXY(15, 18); cout << "\\     \\____(  <_> )|   |  \\ //_ / > |  | \\/ / __ \\_|  |      \\___\\   \\ | " << endl;
 	gotoXY(15, 19); cout << " \\______  / \\____/ |___|  / \\___  /  |__|   (____  /  |__|  /____  >  __" << endl;
 	gotoXY(15, 20); cout << "        \\/              \\/ /_____/               \\/              \\/   \\/" << endl;
-	gotoXY(35, 22); cout << "Exit ?" << endl;
+	gotoXY(35, 22); cout << "Do you want to exit?" << endl;
 	const char *choice[2] = { "<YES>", "<OF COURSE>" };
 	int pos = 0, x = 36, y = 23;
 	TextColor(7);
-	/*TextColor(227);
-	gotoXY(x, y);
-	cout << choice[0];
-	TextColor(7);
-
-	TextColor(227);
-	gotoXY(x+10, y);
-	cout << choice[1];
-	TextColor(7);*/
 
 	while (1) {
 		TextColor(7);
 		for (int i = 0; i < 2; i++) {
 			if (i == pos) {
-				TextColor(227);
 				gotoXY(x, y + i);
+				TextColor(227);
 				cout << choice[i];
 				TextColor(7);
 			}
 			else {
 				gotoXY(x, y + i);
 				cout << choice[i];
+				TextColor(7);
 			}
 		}
 
@@ -380,8 +371,8 @@ bool Map::printLevelUp() {
 		gotoXY(15, 17); cout << "**        ** *  **    **       **    ****       ****       ******     **      *    ###   ###" << endl;
 		gotoXY(15, 18); cout << "**        **   **      **     **         **         **     **         **     *     ###   ###" << endl;
 		gotoXY(15, 19); cout << "******    **    **      *******    *****      *****        ******     *******     ::::: ::::: " << endl;
-		gotoXY(35, 21); cout << "Continue ?" << endl;
-		const char *choice[2] = { "<YES>", "<NO>" };
+		gotoXY(35, 21); cout << "Do you want to continue?" << endl;
+		const char *choice[2] = { "[>YES<]", "[>NO<]" };
 		int pos = 0, x = 36, y = 22;
 		TextColor(7);
 
@@ -389,14 +380,15 @@ bool Map::printLevelUp() {
 			TextColor(7);
 			for (int i = 0; i < 2; i++) {
 				if (i == pos) {
-					TextColor(227);
 					gotoXY(x, y + i);
+					TextColor(227);
 					cout << choice[i];
 					TextColor(7);
 				}
 				else {
 					gotoXY(x, y + i);
 					cout << choice[i];
+					TextColor(7);
 				}
 			}
 

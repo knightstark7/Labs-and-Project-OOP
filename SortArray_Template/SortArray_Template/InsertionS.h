@@ -1,7 +1,6 @@
 #pragma once
 #include"SortArray.h"
 #include"ProgramFrame.h"
-
 template <class T>
 class InsertionS : public SortArray<T> {
 public:
@@ -9,7 +8,7 @@ public:
 };
 
 template <class T>
-void InsertionS<T>::Process(vector<T>& a) {
+void InsertionS<T>::Process(vector<T>& a){
     int i, j;
     T t;
     for (i = 1; i < a.size(); i++) {
@@ -19,3 +18,4 @@ void InsertionS<T>::Process(vector<T>& a) {
         }
         a[j + 1] = t;
     }
+}

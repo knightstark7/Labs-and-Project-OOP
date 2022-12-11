@@ -54,8 +54,6 @@ int cLine::moveToNextState(int t) {
 	int nDelete = 0;
 	if ((redLight && (rand() % 8 == 0)) || (!redLight && (rand() % 15 == 0)) || (t == 0)) {
 		toggleRedLight();
-		// Display Traffic Light
-		//
 	}
 	if (redLight) {
 		TextColor(12);

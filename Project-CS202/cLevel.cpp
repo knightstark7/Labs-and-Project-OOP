@@ -57,7 +57,7 @@ Enemy * cLevel::randNewEnemy(cPosition pos) {
 		int type = rand() % 4;
 		switch (type){
 		case 0: {
-			pEnemy = new cBird(pos);
+			pEnemy = new cWorm(pos);
 			break;
 		}
 		case 1: {
@@ -65,11 +65,11 @@ Enemy * cLevel::randNewEnemy(cPosition pos) {
 			break;
 		}
 		case 2: {
-			pEnemy = new cDinosaur(pos);
+			pEnemy = new cFrog(pos);
 			break;
 		}
 		default:
-			pEnemy = new cTruck(pos);
+			pEnemy = new cHelicopter(pos);
 			break;
 		}
 		//    pEnemy = new Enemy(pos); //choose a random type of enemy
@@ -83,7 +83,7 @@ Enemy* cLevel::getNewEnemy(cPosition pos, int type) {
 	Enemy *pEnemy = NULL;
 	switch (type){
 	case 0: {
-		pEnemy = new cBird(pos);
+		pEnemy = new cWorm(pos);
 		break;
 	}
 	case 1: {
@@ -91,11 +91,11 @@ Enemy* cLevel::getNewEnemy(cPosition pos, int type) {
 		break;
 	}
 	case 2: {
-		pEnemy = new cDinosaur(pos);
+		pEnemy = new cFrog(pos);
 		break;
 	}
 	default:
-		pEnemy = new cTruck(pos);
+		pEnemy = new cHelicopter(pos);
 		break;
 	}
 	//    pEnemy = new Enemy(pos); //choose a random type of enemy

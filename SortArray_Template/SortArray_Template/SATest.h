@@ -1,7 +1,7 @@
 #pragma once
 template <class T>
 istream& operator>>(istream& is, vector<T>& a) {
-    T f;
+    T f{};
     int n;
     do {
         cout << "Enter size of array: ";
