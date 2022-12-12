@@ -19,7 +19,7 @@ char ** cWorm::shape() {
 	return a;
 };
 void cWorm::sound() {
-	PlaySound(TEXT("boc4.wav"), NULL, SND_ASYNC);
+	PlaySound(TEXT("Worm.wav"), NULL, SND_ASYNC);
 };
 
 cWorm::cWorm()

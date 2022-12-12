@@ -25,7 +25,7 @@ char **cHelicopter::shape()
 };
 void cHelicopter::sound()
 {
-	PlaySound(TEXT("carstarthonkbackfire.wav"), NULL, SND_ASYNC);
+	PlaySound(TEXT("Helicopter.wav"), NULL, SND_ASYNC);
 }
 cHelicopter::cHelicopter()
 {

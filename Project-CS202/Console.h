@@ -31,11 +31,12 @@ void TextColor(int color);
 void ShowConsoleCursor(bool showFlag);
 void FixConsoleWindow();
 void DisableMouse();
+
 class constantVar {
 public:
 	static bool isMute;
 	static bool isHard;
 };
-void drawTitle();
+
 
 

@@ -14,7 +14,7 @@ private:
 	bool isDead;
 	char **a;  //a[3][5]
 	char **emptyPlayer;
-	int length = 3, width = 3;
+	int width = 3, length = 5;
 public:
 	People(); // set default position
 	cPosition getPos();

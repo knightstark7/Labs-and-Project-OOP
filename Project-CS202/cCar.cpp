@@ -45,7 +45,7 @@ char ** cCar::shape()
 }
 void cCar::sound()
 {
-	PlaySound(TEXT("trafficjam.wav"), NULL, SND_ASYNC);
+	PlaySound(TEXT("Car.wav"), NULL, SND_ASYNC);
 }
 
 int cCar::getType()

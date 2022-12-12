@@ -3,26 +3,27 @@
 
 People::People() : isDead(false) {
 	pos.setPos(34, 28);
-	a = new char*[3];
-	emptyPlayer = new char*[3];
+	a = new char* [3];
+	emptyPlayer = new char* [3];
 	for (int i = 0; i < 3; ++i) {
-		emptyPlayer[i] = new char[3];
-		for (int j = 0; j < 3; ++j) {
+		emptyPlayer[i] = new char[5];
+		for (int j = 0; j < 5; ++j) {
 			emptyPlayer[i][j] = ' ';
 		}
 	}
-	for (int i = 0; i < 3; i++)
-	{
-		a[i] = new char[3];
-	}
-	char b[3][4] = { " O ",
-				     "/|\\",
-				     "/ \\" };
 	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
+		a[i] = new char[5];
+	}
+	char b[3][6] = { "||||/",
+				   "(o o)",
+				   "-(_)-" };
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 5; j++) {
 			a[i][j] = b[i][j];
 		}
 	}
+	a[0][0] = char(92);
 }
 
 People::People(cPosition pos) : isDead(false), pos(pos) {
@@ -30,24 +31,24 @@ People::People(cPosition pos) : isDead(false), pos(pos) {
 	a = new char* [3];
 	emptyPlayer = new char* [3];
 	for (int i = 0; i < 3; ++i) {
-		emptyPlayer[i] = new char[3];
-		for (int j = 0; j < 3; ++j) {
+		emptyPlayer[i] = new char[5];
+		for (int j = 0; j < 5; ++j) {
 			emptyPlayer[i][j] = ' ';
 		}
 	}
-	for (int i = 0; i < 3; i++)
-	{
-		a[i] = new char[3];
-	}
-	char b[3][4] = { " O ",
-					 "/|\\",
-					 "/ \\" };
 	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
+		a[i] = new char[5];
+	}
+	char b[3][6] = { "||||/",
+				   "(o o)",
+				   "-(_)-" };
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 5; j++) {
 			a[i][j] = b[i][j];
 		}
 	}
-
+	a[0][0] = char(92);
 }
 
 People::~People()
@@ -127,10 +128,10 @@ bool People::checkIsDead() {
 }
 
 bool People::crash(cPosition pos, int w, int h) {
-	int magicConst = 1;
-	if (w == 3) {
+	int magicConst = 3;
+	if (h == 5) {
 		//crash while Car/Truck on the right
-		magicConst = 1;
+		magicConst = 3;
 		if (this->getX() == pos.getX()) {
 			if (this->getY() <= pos.getY() && max(getY(), pos.getY()) <= min(getY() + getlength() - magicConst, pos.getY() + w - magicConst))
 			{
@@ -140,7 +141,7 @@ bool People::crash(cPosition pos, int w, int h) {
 				return true;
 		}
 	}
-	if (w == 1) {
+	if (h == 3) {
 		magicConst = 1;
 		if (this->getX() == pos.getX())
 		{
@@ -163,5 +164,5 @@ bool People::crash(cPosition pos, int w, int h) {
 void People::sound()
 {
 	if(!constantVar::isMute && !isDead)
-	PlaySound(TEXT("RING.wav"), NULL, SND_ASYNC);
+	PlaySound(TEXT("Jump.wav"), NULL, SND_ASYNC);
 }

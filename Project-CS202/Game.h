@@ -14,7 +14,6 @@ public:
 	Game() = default;
 	~Game() = default;
 	void gameSettings();
-	void menu(bool &isFinish);
 	bool newGame(); // start a new game, initialize Map map
 	bool continueGame();  //continue our game
 	bool loadGameMenu(); // get file of Map map
@@ -29,6 +28,3 @@ public:
 	void menu();
 	bool continueMenu();
 };
-
-void SubThread(Game*cg, bool *IS_RUNNING, bool *isPausing, bool *exitFlag);
-

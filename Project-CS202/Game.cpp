@@ -1,7 +1,7 @@
 #include "Game.h"
 
 void Game::gameSettings() {
-	system("cls");
+	clrscr();
 	const char *setting[3] = { "Mode", "Sound", "Back" };
 	char *currentSettting[3] = { "EASY", "ON", "" };
 	if (constantVar::isHard) {
@@ -26,7 +26,12 @@ void Game::gameSettings() {
 	while (1) {
 		if (currentKey) {
 			TextColor(7);
-			drawTitle();
+			gotoXY(20, 10);	cout << "  ______  .______  .___________. __   ______  .__   __.     _______." << endl;
+			gotoXY(20, 11); cout << " /  __  \\ |   _  \\ |           ||  | /  __  \\ |  \\ |  |    /       |" << endl;
+			gotoXY(20, 12); cout << "|  |  |  ||  |_)  |`---|  |----`|  ||  |  |  ||   \\|  |   |   (----`" << endl;
+			gotoXY(20, 13); cout << "|  |  |  ||   ___/     |  |     |  ||  |  |  ||  . `  |    \\   \\    " << endl;
+			gotoXY(20, 14); cout << "|  `--'  ||  |         |  |     |  ||  `--'  ||  |\\   |.----)   |   " << endl;
+			gotoXY(20, 15); cout << " \\______/ | _|         |__|     |__| \\______/ |__| \\__||_______/    " << endl;
 			for (int i = 0; i < 3; i++) {
 				if (i == pos1) {
 					gotoXY(x, y + i);
@@ -65,16 +70,16 @@ void Game::gameSettings() {
 						if (constantVar::isHard) {
 							currentSettting[0] = "HARD";
 							if (!constantVar::isMute) {
-								PlaySound(TEXT("RING.wav"), NULL, SND_ASYNC);
-								PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+								PlaySound(TEXT("Jump.wav"), NULL, SND_ASYNC);
+								PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 							}
 						}
 						else
 						{
 							currentSettting[0] = "EASY";
 							if (!constantVar::isMute) {
-								PlaySound(TEXT("RING.wav"), NULL, SND_ASYNC);
-								PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+								PlaySound(TEXT("Jump.wav"), NULL, SND_ASYNC);
+								PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 							}
 						}
 						break;
@@ -83,17 +88,18 @@ void Game::gameSettings() {
 						toggleMute();
 						if (constantVar::isMute) {
 							currentSettting[1] = "OFF";
-							if (constantVar::isMute)PlaySound(NULL("PUBG.wav"), NULL, SND_APPLICATION);
+							if (constantVar::isMute)
+							PlaySound(NULL("OPEN.wav"), NULL, SND_APPLICATION);
 						}
 						else {
 							currentSettting[1] = "ON ";
-							PlaySound(TEXT("RING.wav"), NULL, SND_ASYNC);
-							PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+							PlaySound(TEXT("Jump.wav"), NULL, SND_ASYNC);
+							PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 						}
 						break;
 					}
 					case 2: {
-						system("cls");
+						clrscr();
 						flag = 1;
 						TextColor(7);
 						return;
@@ -109,17 +115,16 @@ void Game::gameSettings() {
 	return;
 }
 
-
 void Game::menu() {
 	const string choice[4] = { "NEW GAME", "LOAD GAME", "OPTIONS", "EXIT"};
 	int pos = 0;
 	int x = 35, y = 20;
-	if (!constantVar::isMute)PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+	if (!constantVar::isMute)PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 	bool changeInput = true;
 	while (true) {
 		changeInput = true;
 		map.printBorder();
-		if (!constantVar::isMute)PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+		if (!constantVar::isMute)PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 		while (true) {
 			if (changeInput) {
 				for (int i = 0; i < 4; i++) {
@@ -137,19 +142,24 @@ void Game::menu() {
 				}
 				int color = rand() % 7;
 				TextColor(color);
-				gotoXY(20, 11); cout << "  ______ .______        ______       _______.   _______. __ .__   __.  _______ " << endl;
-				gotoXY(20, 12); cout << " /      ||   _  \\      /  __  \\     /      |   /       ||  ||  \\ |  | /  _____|" << endl;
-				gotoXY(20, 13); cout << "|  ,----'|  |_)  |    |  |  |  |   |   (----` |   (----`|  ||   \\|  ||  |  __  " << endl;
-				gotoXY(20, 14); cout << "|  |     |      /     |  |  |  |    \\   \\      \\   \\    |  ||  . `  ||  | |_ | " << endl;
-				gotoXY(20, 15); cout << "|  `----.|  |\\  \\----.|  `--'  |.----)   | .----)   |   |  ||  |\\   ||  |__| | " << endl;
-				gotoXY(20, 16); cout << " \\______|| _| `._____| \\______/ |_______/  |_______/    |__||__| \\__| \\______| " << endl;
-				gotoXY(20, 17); cout << "" << endl;
+				gotoXY(15, 3); cout << "  ______ .______        ______       _______.     _______." << endl;
+				gotoXY(15, 4); cout << " /      ||   _  \\      /  __  \\     /       |    /       |" << endl;
+				gotoXY(15, 5); cout << "|  ,----'|  |_)  |    |  |  |  |   |   (----`   |   (----`" << endl;
+				gotoXY(15, 6); cout << "|  |     |      /     |  |  |  |    \\   \\        \\   \\    " << endl;
+				gotoXY(15, 7); cout << "|  `----.|  |\\  \\----.|  `--'  |.----)   |   .----)   |   " << endl;
+				gotoXY(15, 8); cout << " \\______|| _| `._____| \\______/ |_______/    |_______/    " << endl;
+				gotoXY(30, 9); cout << ".___________. __    __  _______      .______        ______       ___      _______  " << endl;
+				gotoXY(30, 10); cout << "|           ||  |  |  ||   ____|     |   _  \\      /  __  \\     /   \\    |       \\ " << endl;
+				gotoXY(30, 11); cout << "`---|  |----`|  |__|  ||  |__        |  |_)  |    |  |  |  |   /  ^  \\   |  .--.  |" << endl;
+				gotoXY(30, 12); cout << "    |  |     |   __   ||   __|       |      /     |  |  |  |  /  /_\\  \\  |  |  |  |" << endl;
+				gotoXY(30, 13); cout << "    |  |     |  |  |  ||  |____      |  |\\  \\----.|  `--'  | /  _____  \\ |  '--'  |" << endl;
+				gotoXY(30, 14); cout << "    |__|     |__|  |__||_______|     | _| `._____| \\______/ /__/     \\__\\|_______/ " << endl;
 				TextColor(7);
 			}
 			changeInput = false;
 			switch (inputKey()) {
 				changeInput = true;
-				PlaySound(TEXT("RING.wav"), NULL, SND_ASYNC);
+				PlaySound(TEXT("Jump.wav"), NULL, SND_ASYNC);
 			case 'w':
 				changeInput = true;
 				pos--;
@@ -168,7 +178,7 @@ void Game::menu() {
 							Sleep(1000);
 							clrscr();
 							map.printBorder();
-							if (!constantVar::isMute)PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+							if (!constantVar::isMute)PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 							changeInput = true;
 							break;//return; // thang nhung k choi tiep
 							Sleep(1000);
@@ -181,7 +191,7 @@ void Game::menu() {
 							Sleep(1000);
 							clrscr();
 							map.printBorder();
-							if (!constantVar::isMute)PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+							if (!constantVar::isMute)PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 							changeInput = true;
 							break;//return; //thua nhung khong choi tiep
 						}
@@ -195,7 +205,7 @@ void Game::menu() {
 								Sleep(1000);
 								clrscr();
 								map.printBorder();
-								if (!constantVar::isMute)PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+								if (!constantVar::isMute)PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 								changeInput = true;
 								break;//return; // thang nhung k choi tiep
 								Sleep(1000);
@@ -205,7 +215,7 @@ void Game::menu() {
 								TextColor(7);
 								clrscr();
 								map.printBorder();
-								if (!constantVar::isMute)PlaySound(TEXT("PUBG.wav"), NULL, SND_ASYNC);
+								if (!constantVar::isMute)PlaySound(TEXT("OPEN.wav"), NULL, SND_ASYNC);
 								changeInput = true;
 								break;//return; //thua nhung khong choi tiep
 							}
@@ -237,16 +247,15 @@ bool Game::continueMenu() {
 	map.printMap();
 	map.deleteOldPlayer();
 	map.bombEffect();
-	
 	gotoXY(20, 4); cout << "  ______ .______           ___          _______. __    __  _______  _______  " << endl;
 	gotoXY(20, 5); cout << " /      ||   _  \\         /   \\        /       ||  |  |  ||   ____||       \\ " << endl;
 	gotoXY(20, 6); cout << "|  ,----'|  |_)  |       /  ^  \\      |   (----`|  |__|  ||  |__   |  .--.  |" << endl;
 	gotoXY(20, 7); cout << "|  |     |      /       /  /_\\  \\      \\   \\    |   __   ||   __|  |  |  |  |" << endl;
 	gotoXY(20, 8); cout << "|  `----.|  |\\  \\----. /  _____  \\ .----)   |   |  |  |  ||  |____ |  '--'  |" << endl;
 	gotoXY(20, 9); cout << " \\______|| _| `._____|/__/     \\__\\|_______/    |__|  |__||_______||_______/ " << endl;
-	gotoXY(35, 23); cout << "Do you want continue ?" << endl;
+	gotoXY(50, 23); cout << "Do you want continue ?" << endl;
 	const char *choice[2] = { "[>YES<]", "[>NO<]" };
-	int pos = 0, x = 36, y = 25;
+	int pos = 0, x = 51, y = 25;
 	TextColor(7);
 
 	while (1) {
@@ -303,7 +312,7 @@ bool Game::newGame() { // start a new game, initialize Map map
 
 		int x = 125, y = 22;
 		if (isPausing) {
-			TextColor(11);
+			TextColor(5);
 			gotoXY(125, 19); cout << "PAUSE MENU" << endl;
 			TextColor(7);
 			for (int i = 0; i < 3; i++) {
@@ -400,7 +409,7 @@ bool Game::newGame() { // start a new game, initialize Map map
 			map.drawMap();
 		}
 		if (map.isWin()) {
-			if (!constantVar::isMute)PlaySound(TEXT("CompleteStage.wav"), NULL, SND_ASYNC);
+			if (!constantVar::isMute)PlaySound(TEXT("Pass.wav"), NULL, SND_ASYNC);
 			if (map.printLevelUp()) {
 				clrscr();
 				map.nextLevel();
@@ -428,7 +437,7 @@ bool Game::continueGame()
 		if (!isPausing) {
 			map.randomNextState();
 		}
-		TextColor(11);
+		TextColor(5);
 		gotoXY(125, 19); cout << "PAUSE MENU" << endl;
 		TextColor(7);
 		int x = 125, y = 22;
@@ -466,7 +475,7 @@ bool Game::continueGame()
 			if (key == 'p')
 			{
 				togglePauseGame();
-				pos = 0; // reset pause menu selection
+				pos = 0;
 			}
 			if (key == 'a')
 			{
@@ -512,7 +521,7 @@ bool Game::continueGame()
 			map.drawMap();
 		}
 		if (map.isWin()) {
-			if (!constantVar::isMute)PlaySound(TEXT("CompleteStage.wav"), NULL, SND_ASYNC);
+			if (!constantVar::isMute)PlaySound(TEXT("Pass.wav"), NULL, SND_ASYNC);
 			if (map.printLevelUp()) {
 				clrscr();
 				map.nextLevel();
@@ -567,7 +576,7 @@ bool Game::loadGameMenu() { // get file of Map map
 	int curPos = 0;
 	clrscr();
 	map.printBorder();
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 13);
+	TextColor(13);
 	gotoXY(20, 4); cout << " __        ______       ___      _______       .___  ___. _______ .__   __. __    __    " << endl;
 	gotoXY(20, 5); cout << "|  |      /  __  \\     /   \\    |       \\      |   \\/   ||   ____||  \\ |  ||  |  |  |" << endl;
 	gotoXY(20, 6); cout << "|  |     |  |  |  |   /  ^  \\   |  .--.  |     |  \\  /  ||  |__   |   \\|  ||  |  |  |" << endl;
@@ -597,7 +606,7 @@ bool Game::loadGameMenu() { // get file of Map map
 				gotoXY(26, 16 + curPos);
 				cout << "    " << files[curPos];
 				curPos--;
-				curPos = (curPos + files.size()) % files.size();
+				curPos = (curPos + (int)files.size()) % (int)files.size();
 				gotoXY(26, 16 + curPos);
 				cout << ">>  " << files[curPos];
 			}
@@ -606,7 +615,7 @@ bool Game::loadGameMenu() { // get file of Map map
 				gotoXY(26, 16 + curPos);
 				cout << "    " << files[curPos];
 				curPos++;
-				curPos = (curPos + files.size()) % files.size();
+				curPos = (curPos + (int)files.size()) % (int)files.size();
 				gotoXY(26, 16 + curPos);
 				cout << ">>  " << files[curPos];
 			}
@@ -632,7 +641,7 @@ void Game::saveGameMenu() { // get file of Map ma
 	string filename;
 	clrscr();
 	map.printBorder();
-	TextColor(10);
+	TextColor(9);
 	gotoXY(15, 4); cout << "     _______.     ___     ____    ____ _______      .___  ___. _______ .__   __. __    __    " << endl;
 	gotoXY(15, 5); cout << "    /       |    /   \\    \\   \\  /   /|   ____|     |   \\/   ||   ____||  \\ |  ||  |  |  |" << endl;
 	gotoXY(15, 6); cout << "   |   (----`   /  ^  \\    \\   \\/   / |  |__        |  \\  /  ||  |__   |   \\|  ||  |  |  |" << endl;
@@ -696,7 +705,4 @@ void Game::toggleMute() {
 void Game::toggleHard()
 {
 	constantVar::isHard = !constantVar::isHard;
-}
-
-void SubThread(Game* cg, bool* IS_RUNNING, bool* isPausing, bool* exitFlag){
 }

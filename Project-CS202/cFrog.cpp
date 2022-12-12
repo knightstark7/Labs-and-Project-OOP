@@ -21,7 +21,7 @@ char ** cFrog::shape() {
 	return a;
 };
 void cFrog::sound() {
-	PlaySound(TEXT("./Tiger6.wav"), NULL, SND_ASYNC);
+	PlaySound(TEXT("./Frog.wav"), NULL, SND_ASYNC);
 };
 void cFrog::test() {
 	//Row1

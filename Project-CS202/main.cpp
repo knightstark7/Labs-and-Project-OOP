@@ -6,7 +6,7 @@
 #include "cWorm.h"
 #include "cFrog.h"
 
-bool constantVar::isMute = true;
+bool constantVar::isMute = false;
 bool constantVar::isHard = false;
 
 

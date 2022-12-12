@@ -84,15 +84,3 @@ void DisableMouse() {
 	GetConsoleMode(hConsoleHandle, &prev_mode);
 	SetConsoleMode(hConsoleHandle, prev_mode & ~ENABLE_QUICK_EDIT_MODE);
 }
-
-void drawTitle(){
-	int base = 10;
-	int baseX = 20;
-	gotoXY(baseX, base);	 cout << "  ______  .______  .___________. __   ______  .__   __.     _______." << endl;
-	gotoXY(baseX, base + 1); cout << " /  __  \\ |   _  \\ |           ||  | /  __  \\ |  \\ |  |    /       |" << endl;
-	gotoXY(baseX, base + 2); cout << "|  |  |  ||  |_)  |`---|  |----`|  ||  |  |  ||   \\|  |   |   (----`" << endl;
-	gotoXY(baseX, base + 3); cout << "|  |  |  ||   ___/     |  |     |  ||  |  |  ||  . `  |    \\   \\    " << endl;
-	gotoXY(baseX, base + 4); cout << "|  `--'  ||  |         |  |     |  ||  `--'  ||  |\\   |.----)   |   " << endl;
-	gotoXY(baseX, base + 5); cout << " \\______/ | _|         |__|     |__| \\______/ |__| \\__||_______/    " << endl;
-	gotoXY(baseX, base + 6); cout << "" << endl;
-}

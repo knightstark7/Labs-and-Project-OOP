@@ -63,7 +63,6 @@ void Map::drawMap() {
 		if (player.crash(enemyList[i]->getPos(), enemyList[i]->getlength() - 3, enemyList[i]->getwidth())) {
 			if (!constantVar::isMute) enemyList[i]->sound();
 			player.killPlayer();
-			//randomNextState();
 			deleteOldPlayer();
 			drawPlayer();
 			Sleep(300);
@@ -90,16 +89,6 @@ int Map::draw(cPosition pos, char **shape, int w, int h) {
 	return 1;
 }
 
-//void Map::drawEnemies(Enemy * enemy) { // deleted
-//	int status = draw(enemy->getPos(), enemy->shape(), enemy->getlength(), enemy->getwidth());
-//	if (status == 0) {
-//		enemy->goOutMap();
-//	}
-//	if (status == -1) {
-//		player.killPlayer();
-//	}
-//}
-
 void Map::drawPlayer() {
 	TextColor(7);
 	int status = draw(player.getPos(), player.shape(), player.getlength(), player.getwidth());
@@ -119,7 +108,7 @@ void Map::initializeNewState() {
 	rowsData.~cRows();
 	new(&rowsData) cRows();
 	int padding[10]{};
-	for (int i = 0; i < level.getLevel() + 3; ++i) {
+	for (int i = 0; i <  level.getLevel() + 3; i++) {  
 		padding[i] = 0;
 		int speed = rand() % (level.getMinSpeed() - level.getMaxSpeed() + 1) + level.getMaxSpeed();
 		bool direction = rand() % 2;
@@ -189,7 +178,7 @@ bool Map::isEnd()
 bool Map::isWin()
 {
 	if (player.getX() == 1) {
-		if (!constantVar::isMute)PlaySound(TEXT("CompleteStage.wav"), NULL, SND_ASYNC);
+		if (!constantVar::isMute)PlaySound(TEXT("Pass.wav"), NULL, SND_ASYNC);
 		return true;
 	}
 	return false;
@@ -197,31 +186,35 @@ bool Map::isWin()
 
 void Map::bombEffect()
 {
-	const int baseX = 10, baseY = 10;
-	gotoXY(baseX, baseY);
-	cout << R"(                                               ____                       )" << "\n";
-	gotoXY(baseX, baseY + 1);
-	cout << R"(                                           __,-~~/~    `---.                  )" << "\n";
-	gotoXY(baseX, baseY + 2);
-	cout << R"(                                         _/_,---(      ,    )                 )" << "\n";
-	gotoXY(baseX, baseY + 3);
-	cout << R"(                                     __ /        <    /   )  \___             )" << "\n";
-	gotoXY(baseX, baseY + 4);
-	cout << R"(                      - ------===;;;'====------------------===;;;===----- -  -)" << "\n";
-	gotoXY(baseX, baseY + 5);
-	cout << R"(                                      \/  ~"~"~"~"~"~\~"~)~" / )" << "\n";
-	gotoXY(baseX, baseY + 6);
-	cout << R"(                                        (_ (   \  (     >    \)               )" << "\n";
-	gotoXY(baseX, baseY + 7);
-	cout << R"(                                         \_( _ <         >_>'                 )" << "\n";
-	gotoXY(baseX, baseY + 8);
-	cout << R"(                                            ~ `-i' ::>|--"                    )" << "\n";
-	gotoXY(baseX, baseY + 9);
-	cout << R"(                                                I;|.|.|                       )" << "\n";
-	gotoXY(baseX, baseY + 10);
-	cout << R"(                                               <|i::|i|`.                     )" << "\n";
-	gotoXY(baseX, baseY + 11);
-	cout << R"(                                              (` ^'"`-' ")                    )";
+	gotoXY(35, 10);
+	cout << R"( +
+                                   ,|,
+                                   |||
+                                  / | \
+                                  | | |
+                                  | | |
+                                 /  |  \
+                                 |  |  |
+                                 |  |   \
+                                /    \  |
+                                |    |  |
+                                |    |   \
+                               /     |   |
+                8              |     |   |
+              ""8""           /      |    \
+                8            /        \   ,\
+              ,d8888888888888|========|="" |
+            ,d"  "88888888888|  ,aa,  |  a |
+          ,d"      "888888888|  8  8  |  8 |
+       ,d8888888b,   "8888888|  8aa8  |  8,|
+     ,d"  "8888888b,   "88888|========|="" |
+   ,d"      "8888888b,   "888|  a  a  |  a |         ,-=-.       ______     _
+ ,d"   ,aa,   "8888888b,   "8|  8  8  |  8,|        /  +  \     />----->  _|1|_
+/|    d"  "b    |""""""|     |========|="" |        | ~~~ |    // -/- /  |_ H _|
+ |    8    8    |      |     |  ,aa,  |  a |	    |R.I.P|   //  /  /     |S|					
+ |    8aaaa8    |      |     |  8  8  |  8 |   \vV,,|_____|V,//_____/VvV,v,|_|/,,vhjwv/
+ |              |      |     |  """"  | ,,=|
+ |aaaaaaaaaaaaaa|======""""""""""""""""")";
 }
 
 void Map::nextLevel() {
@@ -312,15 +305,15 @@ void Map::printCongrats()
 	clrscr();
 	printMap();	
 	deleteOldPlayer();
-	if (!constantVar::isMute)PlaySound(TEXT("CompleteStage.wav"), NULL, SND_ASYNC);
-	gotoXY(15, 15); cout << "_________                                              __            ._." << endl;
-	gotoXY(15, 16); cout << "\\_   ___ \\   ____    ____      ____  _______ _____   _/  |_   ______ | |" << endl;
-	gotoXY(15, 17); cout << "/    \\  \\/  /  _ \\  /    \\   / ___\\ \\_  __ \\__    \\  \\   __\\ /  ___/ | |" << endl;
-	gotoXY(15, 18); cout << "\\     \\____(  <_> )|   |  \\ //_ / > |  | \\/ / __ \\_|  |      \\___\\   \\ | " << endl;
-	gotoXY(15, 19); cout << " \\______  / \\____/ |___|  / \\___  /  |__|   (____  /  |__|  /____  >  __" << endl;
-	gotoXY(15, 20); cout << "        \\/              \\/ /_____/               \\/              \\/   \\/" << endl;
+	if (!constantVar::isMute)PlaySound(TEXT("Pass.wav"), NULL, SND_ASYNC);
+	gotoXY(15, 15); cout << " _______  __ .__   __. __      _______. __    __  _______  _______  " << endl;
+	gotoXY(15, 16); cout << "|   ____||  ||  \\ |  ||  |    /       ||  |  |  ||   ____||       \\ " << endl;
+	gotoXY(15, 17); cout << "|  |__   |  ||   \\|  ||  |   |   (----`|  |__|  | |  |__   |  .--.  |" << endl;
+	gotoXY(15, 18); cout << "|   __|  |  ||  . `  ||  |    \\   \\    |   __   ||   __|  |  |  |  |" << endl;
+	gotoXY(15, 19); cout << "|  |     |  ||  |\\   ||  |.----)   |   |  |  |  ||  |____ |  '--'  |" << endl;
+	gotoXY(15, 20); cout << "|__|     |__||__| \\__||__||_______/    |__|  |__||_______||_______/ " << endl;
 	gotoXY(35, 22); cout << "Do you want to exit?" << endl;
-	const char *choice[2] = { "<YES>", "<OF COURSE>" };
+	const char *choice[2] = { "[>YES<]", "[>YUP<]" };
 	int pos = 0, x = 36, y = 23;
 	TextColor(7);
 
@@ -366,14 +359,15 @@ bool Map::printLevelUp() {
 		clrscr();
 		printMap();
 		deleteOldPlayer();
-		gotoXY(15, 15); cout << "******    *******       *******      *******    *******    ******     *******      ###   ###" << endl;
-		gotoXY(15, 16); cout << "**        **     **    **     **   **         **           **         **     *     ###   ###" << endl;
-		gotoXY(15, 17); cout << "**        ** *  **    **       **    ****       ****       ******     **      *    ###   ###" << endl;
-		gotoXY(15, 18); cout << "**        **   **      **     **         **         **     **         **     *     ###   ###" << endl;
-		gotoXY(15, 19); cout << "******    **    **      *******    *****      *****        ******     *******     ::::: ::::: " << endl;
-		gotoXY(35, 21); cout << "Do you want to continue?" << endl;
+		gotoXY(20, 5); cout << "  ______ .______        ______       _______.     _______. _______  _______  " << endl;
+		gotoXY(20, 6); cout << " /      ||   _  \\      /  __  \\     /       |    /       ||   ____||       \\ " << endl;
+		gotoXY(20, 7); cout << "|  ,----'|  |_)  |    |  |  |  |   |   (----`   |   (----`|  |__   |  .--.  |" << endl;
+		gotoXY(20, 8); cout << "|  |     |      /     |  |  |  |    \\   \\        \\   \\    |   __|  |  |  |  |" << endl;
+		gotoXY(20, 9); cout << "|  `----.|  |\\  \\----.|  `--'  |.----)   |   .----)   |   |  |____ |  '--'  |" << endl;
+		gotoXY(20, 10); cout << " \\______|| _| `._____| \\______/ |_______/    |_______/    |_______||_______/ " << endl;
+		gotoXY(35, 17); cout << "Do you want to continue?" << endl;
 		const char *choice[2] = { "[>YES<]", "[>NO<]" };
-		int pos = 0, x = 36, y = 22;
+		int pos = 0, x = 36, y = 19;
 		TextColor(7);
 
 		while (1) {
