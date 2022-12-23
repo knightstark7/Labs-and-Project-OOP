@@ -8,7 +8,6 @@ public:
 	cFrog(Position pos);
 	char ** shape();
 	void sound();
-	void test();
 	int getlength(){
 		return 9;
 	}

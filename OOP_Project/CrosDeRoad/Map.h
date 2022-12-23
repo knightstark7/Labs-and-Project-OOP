@@ -8,7 +8,7 @@
 
 class Map{
 	const int length = 115, width = 40;
-	char map[44][125];
+	char map[45][120];
 	People player;
 	cRows rowsData;
 	Level level;
@@ -16,16 +16,15 @@ class Map{
 public:
 	Map();
 	~Map() = default;
-	void printMap(); // print map to screen
-	void drawMap(); // draw all enemies and player
+	void printMap(); 
+	void drawMap(); 
 	void redrawMap();
-	int draw(Position pos, char ** shape, int w, int h); // draw from position pos(x, y) shape(w, h) | 1: ok, 0: go out of map, -1: crash
+	int draw(Position pos, char ** shape, int w, int h); 
 	void deleteOldPlayer();
-	void drawPlayer(); // draw player to map, check if crash => kill player
-	void nextState(); // generate new enemies base on level and push to rows
-	void newState(); // intialize a new map base on level, reset player state
-							   //    void handleKeyInput(); // receive key input from Game and call appropriate function
-	void updatePosPeople(char moving);
+	void drawPlayer(); 
+	void nextState(); 
+	void newState();
+	void updatePosPeople(char move);
 	void printChurch();
 	void saveGame(string file);
 	bool loadGame(string file);

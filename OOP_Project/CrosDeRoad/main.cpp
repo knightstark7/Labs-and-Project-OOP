@@ -14,11 +14,10 @@ int main() {
 	srand(time(NULL));
 	HWND console = GetConsoleWindow();
 	RECT r;
-	GetWindowRect(console, &r); //stores the console's current dimensions
+	GetWindowRect(console, &r);
 	MoveWindow(console, r.left, r.top, 1920, 1080, TRUE);
 	FixConsoleWindow();
 	Game game;
-
 	game.menu();
 	
 }

@@ -12,11 +12,11 @@ class People{
 private:
 	Position pos;
 	bool isDead;
-	char **a;  //a[3][5]
+	char **a; 
 	char **emptyPlayer;
 	int width = 3, length = 5;
 public:
-	People(); // set default position
+	People();
 	Position getPos();
 	People(Position pos); // set current position when load game
 	~People();
@@ -25,7 +25,7 @@ public:
 	void Right();
 	void Left();
 	bool checkIsDead();
-	void killPlayer(); // set isDead
+	void killPlayer();
 	char **shape();
 	char **emptyShape();
 	int getlength();

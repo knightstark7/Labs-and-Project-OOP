@@ -1,5 +1,4 @@
 #include "Map.h"
-//#include "cConsole.h"
 
 Map::Map() : length(115), width(40) {
 	for (int i = 0; i <= length; i++) {
@@ -43,12 +42,12 @@ void Map::printMap()
 }
 
 void Map::drawMap() {
-	//resetMap();
-	vector <Enemy*> enemyList = rowsData.listEnemy(); //enemyList = 0 
+	vector <Enemy*> enemyList = rowsData.listEnemy();
 	for (int i = 0; i < (int)enemyList.size(); ++i) {
-		//drawEnemies(enemyList[i]);
 		if (player.crash(enemyList[i]->getPos(), enemyList[i]->getlength() - 3, enemyList[i]->getwidth())) {
-			if (!constantVar::isMute) enemyList[i]->sound();
+			if (!constantVar::isMute) {
+				enemyList[i]->sound();
+			}
 			player.killPlayer();
 			deleteOldPlayer();
 			drawPlayer();
@@ -122,7 +121,6 @@ void Map::newState() {
 
 void Map::nextState() {
 	srand(time(NULL));
-	//int t = rand(); // this will be get from global clock
 	Enemy * newEnemy;
 	Position pos;
 	int tryCount = 10000;
@@ -226,7 +224,7 @@ void Map::saveGame(string file)
 	printInt(player.getY(), outfile);
 
 	vector <cLine*> rows(rowsData.listRow());
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < level.getLevel() + 3; ++i) {
 		printInt(rows[i]->getCurrentRow(), outfile);
 		printInt((int)rows[i]->getDirection(), outfile);
 		printInt(rows[i]->getSpeed(), outfile);
@@ -263,7 +261,7 @@ bool Map::loadGame(string file) {
 	rowsData.~cRows();
 	new(&rowsData) cRows();
 
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < level.getLevel() + 3; ++i) {
 		int currentRow, direction, speed, redLight;
 		currentRow = readInt(infile);
 		direction = readInt(infile);

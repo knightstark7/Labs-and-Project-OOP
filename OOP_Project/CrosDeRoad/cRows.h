@@ -8,9 +8,9 @@ private:
 public:
 	cRows();
 	~cRows() = default;
-	bool pushEnemy(int row, Enemy* enemy); //  push a new enemy to a row
+	bool pushEnemy(int row, Enemy* enemy);
 	void pushRow(cLine*);
-	vector <Enemy*> listEnemy(); // return all enemies from all rowsgit ad
+	vector <Enemy*> listEnemy();
 	vector <cLine*> listRow();
 	int nextState(int t);
 	void redrawState();

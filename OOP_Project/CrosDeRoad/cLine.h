@@ -13,8 +13,8 @@ public:
 	cLine() = default;
 	cLine(int speed, bool direction, bool redLight, int currentRow);
 	~cLine() = default;
-	bool pushEnemy(Enemy* newEnemy); // push a new new enemy, if !position => set base on direction
-	int nextState(int t); // if % speed = 0, move all enemy left or right base on direction && redLight
+	bool pushEnemy(Enemy* newEnemy);
+	int nextState(int t);
 	void redrawState();
 	void toggleRedLight();
 	void deleteOldEnemy(Position pos, int w, int h);

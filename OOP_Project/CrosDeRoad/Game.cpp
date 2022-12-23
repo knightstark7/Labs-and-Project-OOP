@@ -140,19 +140,23 @@ void Game::menu() {
 					}
 				}
 				int color = rand() % 7;
-				TextColor(color);
-				gotoXY(15, 3); cout << "  ______ .______        ______       _______.     _______." << endl;
-				gotoXY(15, 4); cout << " /      ||   _  \\      /  __  \\     /       |    /       |" << endl;
-				gotoXY(15, 5); cout << "|  ,----'|  |_)  |    |  |  |  |   |   (----`   |   (----`" << endl;
-				gotoXY(15, 6); cout << "|  |     |      /     |  |  |  |    \\   \\        \\   \\    " << endl;
-				gotoXY(15, 7); cout << "|  `----.|  |\\  \\----.|  `--'  |.----)   |   .----)   |   " << endl;
-				gotoXY(15, 8); cout << " \\______|| _| `._____| \\______/ |_______/    |_______/    " << endl;
-				gotoXY(30, 9); cout << ".___________. __    __  _______      .______        ______       ___      _______  " << endl;
-				gotoXY(30, 10); cout << "|           ||  |  |  ||   ____|     |   _  \\      /  __  \\     /   \\    |       \\ " << endl;
-				gotoXY(30, 11); cout << "`---|  |----`|  |__|  ||  |__        |  |_)  |    |  |  |  |   /  ^  \\   |  .--.  |" << endl;
-				gotoXY(30, 12); cout << "    |  |     |   __   ||   __|       |      /     |  |  |  |  /  /_\\  \\  |  |  |  |" << endl;
-				gotoXY(30, 13); cout << "    |  |     |  |  |  ||  |____      |  |\\  \\----.|  `--'  | /  _____  \\ |  '--'  |" << endl;
-				gotoXY(30, 14); cout << "    |__|     |__|  |__||_______|     | _| `._____| \\______/ /__/     \\__\\|_______/ " << endl;
+				int x = 15, y = 3;
+				//CROSS
+				drawAlphaC(x, y);
+				drawAlphaR(x + 9, y);
+				drawAlphaO(x + 9 + 11, y);
+				drawAlphaS(x + 9 + 11 + 11, y);
+				drawAlphaS(x + 9 + 11 + 11 + 9, y);
+				//THE
+				x = 20, y = 10;
+				drawAlphaT(x, y);
+				drawAlphaH(x + 11, y);
+				drawAlphaE(x + 11 + 9, y);
+				//ROAD
+				drawAlphaR(x + 11 + 9 + 15, y);
+				drawAlphaO(x + 11 + 9 + 15 + 11, y);
+				drawAlphaA(x + 11 + 9 + 15 + 11 + 11, y);
+				drawAlphaD(x + 11 + 9 + 15 + 11 + 11 + 9, y);
 				TextColor(7);
 			}
 			changeInput = false;
@@ -288,7 +292,6 @@ bool Game::continueMenu() {
 	}
 	TextColor(7);
 }
-
 
 bool Game::newGame() { 
 	char key;

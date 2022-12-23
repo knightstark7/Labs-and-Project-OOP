@@ -31,4 +31,16 @@ void TextColor(int color);
 void ShowConsoleCursor(bool showFlag);
 void FixConsoleWindow();
 
+//daw text
+void drawAlphaC(int x, int y);
+void drawAlphaR(int x, int y);
+void drawAlphaO(int x, int y);
+void drawAlphaS(int x, int y);
+void drawAlphaT(int x, int y);
+void drawAlphaH(int x, int y);
+void drawAlphaE(int x, int y);
+void drawAlphaA(int x, int y);
+void drawAlphaD(int x, int y);
+
+
 

@@ -18,7 +18,7 @@ void Level::initialize() {
 	if (constantVar::isHard) difficulty = 5, maxE = 40;
 	nRow = 10;
 	maxEnemy = min(maxE, nRow * 10);
-	maxSpeed = difficulty- level * 2;  //speed nho ,toc do thuc nhanh
+	maxSpeed = difficulty- level * 2;
 	minSpeed = difficulty - level * 1;  
 }
 
@@ -72,7 +72,6 @@ Enemy * Level::randNewEnemy(Position pos) {
 			pEnemy = new cHelicopter(pos);
 			break;
 		}
-		//    pEnemy = new Enemy(pos); //choose a random type of enemy
 		return pEnemy;
 	}
 	return NULL;

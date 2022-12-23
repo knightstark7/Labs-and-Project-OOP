@@ -12,9 +12,9 @@ public:
 	int getX();
 	int getY();
 	Enemy();
-	Enemy(Position st); // create new enemy with starting position
+	Enemy(Position st);
 	virtual ~Enemy() = default;
-	virtual char **shape() = 0; // return the shape of enemy to draw
+	virtual char **shape() = 0;
 	virtual void sound() = 0;
 	virtual int getType() = 0;
 	void updatePosition(int dx, int dy);

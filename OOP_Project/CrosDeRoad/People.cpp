@@ -26,7 +26,6 @@ People::People() : isDead(false) {
 }
 
 People::People(Position pos) : isDead(false), pos(pos) {
-	//pos.setPos(pos.getX(), pos.getY());
 	a = new char* [3];
 	emptyPlayer = new char* [3];
 	for (int i = 0; i < 3; ++i) {
@@ -142,11 +141,11 @@ bool People::crash(Position pos, int w, int h) {
 		magicConst = 1;
 		if (this->getX() == pos.getX())
 		{
-			if (this->getY() >= pos.getY() && pos.getY() + w - magicConst >= this->getY()) // crash while bird on the left
+			if (this->getY() >= pos.getY() && pos.getY() + w - magicConst >= this->getY())
 			{
 				return true;
 			}
-			if (getY() <= pos.getY() && pos.getY() - getY() <= 2) //crash while bird on the right
+			if (getY() <= pos.getY() && pos.getY() - getY() <= 2)
 				return true;
 		}
 	}
